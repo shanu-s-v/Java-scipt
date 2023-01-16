@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width , initial-scale=1.0">
+<title>Form Validation</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jslab2.css">
+</head> 
+<body>
+  <div class="container">
+    <h1>Form for Signup</h1>
+    <form action="#" onsubmit="return validation()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" autocomplete="off">
+      <span id="user" class="text-danger font-weight-bold"></span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter your email" name="email" autocomplete="off">
+      <span id="mail" class="text-danger font-weight-bold"></span>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone.No:</label>
+      <input type="tel" class="form-control" id="phone" placeholder="Enter your Number" name="phone" autocomplete="off">
+      <span id="telp" class="text-danger font-weight-bold"></span>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="pwd" autocomplete="off">
+      <span id="pass" class="text-danger font-weight-bold"></span>
+    </div>
+    <input type="submit" name="submit" value="submit" class="btn btn-success">
+    </form>
+  </div>
+<script>
+ function validation(){
+    var name=document.getElementById("name").value;
+    var email=document.getElementById("email").value;
+    var phone=document.getElementById("phone").value;
+    var pwd=document.getElementById("pwd").value;
+    if (name==""){
+        document.getElementById("user").innerHTML="**Please fill the name field**";
+        return false;
+    }
+    if ((!isNaN(name)) || /\d/.test(name)){
+        document.getElementById("user").innerHTML="**Digits not allowed!**";
+        return false;
+    }
+    if ((name.length <3) || (name.length >20)){
+        document.getElementById("user").innerHTML="**Character length must be between 3 & 20**";
+        return false;
+    }
+    if (email==""){
+        document.getElementById("mail").innerHTML="**Please fill the email field**";
+        return false;
+    }
+    if (email.indexOf('@') <=0){
+        document.getElementById("mail").innerHTML="**@ Invalid position**";
+        return false;
+    }
+    if ((email.charAt(email.length-4) !='.') && (email.charAt(email.length-3) !='.')){
+        document.getElementById("mail").innerHTML="**. Invalid position**";
+        return false;
+    }
+    if (phone==""){
+        document.getElementById("telp").innerHTML="**Please fill the number field**";
+        return false;
+    }
+    if (isNaN(phone)){
+        document.getElementById("telp").innerHTML="**Characters not allowed!**";
+        return false;
+    }
+    if (phone.length !=10) {
+        document.getElementById("telp").innerHTML="**Phone number length must be 10 in digits";
+        return false;
+    }
+    if (pwd==""){
+        document.getElementById("pass").innerHTML="**Please fill the password field**";
+        return false;
+    }
+    if ((pwd.length <=6) || (pwd.length >12)) {
+        document.getElementById("pass").innerHTML="**Password length must be between 6 & 12**";
+        return false;
+    }
+    return true;
+ }
+</script>
+</body>
+</html>
+
+    
